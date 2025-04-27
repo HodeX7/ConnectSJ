@@ -11,15 +11,19 @@ import Incentives from './pages/Incentives';
 import Rewards from './pages/Rewards';
 import Profile from './pages/Profile';
 import Jobs from './pages/Jobs';
+import Chatbot from './components/ChatBot';
 
 // Components
 import ProtectedRoute from './components/ProtectedRoute';
 import LanguageSelector from './components/LanguageSelector';
 
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
+  let chat_token = import.meta.env.VITE_CHATBOT_API_KEY;
+  // console.log(chat_token)
 
   // Check if user is authenticated
   useEffect(() => {
@@ -55,6 +59,7 @@ function App() {
       {showLanguageSelector && (
         <div className="fixed top-4 right-4 z-50">
           <LanguageSelector />
+          <Chatbot token={chat_token}/>
         </div>
       )}
       

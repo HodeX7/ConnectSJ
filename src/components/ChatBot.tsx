@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from "react";
 
 interface Message {
-  sender: 'user' | 'bot';
+  sender: "user" | "bot";
   text: string;
 }
 
@@ -12,24 +12,26 @@ interface ChatbotProps {
 const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [inputText, setInputText] = useState('');
+  const [inputText, setInputText] = useState("");
   const [loading, setLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const isProduction = import.meta.env.VITE_MODE === "production";
+  // console.log(isProduction);
 
   useEffect(() => {
-    const saved = localStorage.getItem('chatHistory');
+    const saved = localStorage.getItem("chatHistory");
     if (saved) {
       setMessages(JSON.parse(saved));
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('chatHistory', JSON.stringify(messages));
+    localStorage.setItem("chatHistory", JSON.stringify(messages));
   }, [messages]);
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, loading]);
 
   useEffect(() => {
@@ -42,43 +44,49 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
     e.preventDefault();
     if (!inputText.trim() || loading) return;
 
-    const userMessage: Message = { sender: 'user', text: inputText.trim() };
-    setMessages(prev => [...prev, userMessage]);
-    setInputText('');
+    const userMessage: Message = { sender: "user", text: inputText.trim() };
+    setMessages((prev) => [...prev, userMessage]);
+    setInputText("");
     setLoading(true);
 
     try {
       const payload = {
         input_value: userMessage.text,
-        output_type: 'chat',
-        input_type: 'chat'
+        output_type: "chat",
+        input_type: "chat",
       };
 
-      const response = await fetch(
-        '/chatapi/lf/c40fcb81-ad16-49ea-a621-5666e1bdafda/api/v1/run/24852f36-f1cc-40cf-8e3f-b879f3cfe0d2?stream=false',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`
-          },
-          body: JSON.stringify(payload)
-        }
-      );
+      const isProduction = import.meta.env.MODE === "production";
+
+      const apiUrl = isProduction
+        ? "/api/chat"
+        : "/chatapi/lf/c40fcb81-ad16-49ea-a621-5666e1bdafda/api/v1/run/24852f36-f1cc-40cf-8e3f-b879f3cfe0d2?stream=false";
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
       const data = await response.json();
 
       // ✅ Correct parsing: dig into data.outputs[0].outputs[0].results.message.data.text
-      const botText = 
-        data?.outputs?.[0]?.outputs?.[0]?.results?.message?.data?.text || 
-        'Sorry, I could not understand the response.';
+      const botText =
+        data?.outputs?.[0]?.outputs?.[0]?.results?.message?.data?.text ||
+        "Sorry, I could not understand the response.";
 
-      const botMessage: Message = { sender: 'bot', text: botText };
-      setMessages(prev => [...prev, botMessage]);
+      const botMessage: Message = { sender: "bot", text: botText };
+      setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
-      console.error('API error', error);
-      const errorMessage: Message = { sender: 'bot', text: 'Oops! Something went wrong.' };
-      setMessages(prev => [...prev, errorMessage]);
+      console.error("API error", error);
+      const errorMessage: Message = {
+        sender: "bot",
+        text: "Oops! Something went wrong.",
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setLoading(false);
     }
@@ -116,9 +124,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
               <div
                 key={idx}
                 className={`max-w-xs px-3 py-2 rounded-lg break-words whitespace-pre-wrap ${
-                  msg.sender === 'user'
-                    ? 'bg-blue-600 text-white self-end ml-auto'
-                    : 'bg-gray-200 text-gray-900 self-start mr-auto'
+                  msg.sender === "user"
+                    ? "bg-blue-600 text-white self-end ml-auto"
+                    : "bg-gray-200 text-gray-900 self-start mr-auto"
                 }`}
               >
                 {msg.text}
@@ -149,7 +157,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
             <button
               type="submit"
               className={`px-4 py-1 rounded-lg font-semibold text-white ${
-                loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+                loading
+                  ? "bg-gray-400 cursor-not-allowed"
+                  : "bg-blue-600 hover:bg-blue-700"
               }`}
               disabled={loading}
             >

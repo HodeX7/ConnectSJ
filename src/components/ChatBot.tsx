@@ -17,7 +17,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const isProduction = import.meta.env.VITE_MODE === "production";
-  console.log(isProduction);
+  // console.log(isProduction);
 
   useEffect(() => {
     const saved = localStorage.getItem("chatHistory");
@@ -56,8 +56,10 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
         input_type: "chat",
       };
 
+      const isProduction = import.meta.env.MODE === "production";
+
       const apiUrl = isProduction
-        ? "https://api.langflow.astra.datastax.com/lf/c40fcb81-ad16-49ea-a621-5666e1bdafda/api/v1/run/24852f36-f1cc-40cf-8e3f-b879f3cfe0d2?stream=false"
+        ? "/api/chat"
         : "/chatapi/lf/c40fcb81-ad16-49ea-a621-5666e1bdafda/api/v1/run/24852f36-f1cc-40cf-8e3f-b879f3cfe0d2?stream=false";
 
       const response = await fetch(apiUrl, {

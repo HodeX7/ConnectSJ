@@ -2,35 +2,36 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import { Award, Calendar, MapPin, ArrowRight, CheckCircle } from "lucide-react";
-
 import Button from "../components/Button";
 import Card from "../components/Card";
 import NavBar from "../components/NavBar";
-import { mockActivities, mockCompletedActivities } from "../data/mockData"; // Import mock data
+import { getActivities, getCompletedActivities } from "../services/api";
 
 const Incentives: React.FC = () => {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState("upcoming");
-  const [registered, setRegistered] = useState<number[]>([]);
+  const [activities, setActivities] = useState([]);
+  const [completedActivities, setCompletedActivities] = useState([]);
+  const [registered, setRegistered] = useState<string[]>([]);
 
-  // Uncomment the following when API is ready
-  /*
   useEffect(() => {
     const fetchActivities = async () => {
       try {
-        const activitiesData = await getActivities(); // Fetch activities from API
-        const completedData = await getCompletedActivities(); // Fetch completed activities from API
-        setRegistered(completedData.registered); // Set registered activities
+        const activitiesData = await getActivities();
+        const completedData = await getCompletedActivities();
+        setActivities(activitiesData);
+        setCompletedActivities(completedData);
+        // Assuming completedData returns activity IDs
+        setRegistered(completedData.map((a) => a.id));
       } catch (err) {
-        console.error(err); // Handle error
+        console.error(err);
       }
     };
 
     fetchActivities();
   }, []);
-  */
 
-  const handleRegister = (activityId: number) => {
+  const handleRegister = (activityId: string) => {
     if (!registered.includes(activityId)) {
       setRegistered([...registered, activityId]);
     }
@@ -110,7 +111,7 @@ const Incentives: React.FC = () => {
 
       <div className="px-6">
         {activeTab === "upcoming"
-          ? mockActivities.map((activity) => (
+          ? activities.map((activity) => (
               <motion.div
                 key={activity.id}
                 variants={itemVariants}
@@ -180,7 +181,7 @@ const Incentives: React.FC = () => {
                 </Card>
               </motion.div>
             ))
-          : mockCompletedActivities.map((activity) => (
+          : completedActivities.map((activity) => (
               <motion.div
                 key={activity.id}
                 variants={itemVariants}

@@ -89,26 +89,6 @@ export const redeemReward = async (rewardId: number) => {
   return { success: true };
 };
 
-//Test only to push For test Job
-export const addTestJob = async () => {
-  const jobData = {
-    company: 'OpenAI',
-    description: 'Create cool things with AI.',
-    location: 'Remote',
-    requirements: 'Passion for learning',
-    salary: '$120k+',
-    title: 'AI Engineer',
-    type: 'Full-time',
-  };
-
-  const ref = collection(db, 'jobs');
-  const docRef = await addDoc(ref, jobData);
-
-  return { id: docRef.id, ...jobData };
-};
-
-
-
 export const getUserProfile = async () => {
   const token = localStorage.getItem('token');
   const userId = token || 'demo-user'; // Replace with decoded UID if needed
@@ -134,3 +114,118 @@ export const loginUser = async (calstateId: string, password: string) => {
 export const registerUser = async (userData: any) => {
   return { success: true, ...userData };
 };
+
+
+
+
+
+
+//Test only to push For test Job
+export const addTestJob = async () => {
+  const jobData = {
+    company: 'OpenAI',
+    description: 'Create cool things with AI.',
+    location: 'Remote',
+    requirements: 'Passion for learning',
+    salary: '$120k+',
+    title: 'AI Engineer',
+    type: 'Full-time',
+  };
+
+  const ref = collection(db, 'jobs');
+  const docRef = await addDoc(ref, jobData);
+
+  return { id: docRef.id, ...jobData };
+};
+
+
+export const addTestResource = async () => {
+  const resourceData = {
+    address: '123 Community Rd',
+    distance: '2.5 miles',
+    hours: '9 AM - 5 PM',
+    image: 'https://example.com/resource.jpg',
+    name: 'Local Resource Center',
+    phone: '555-1234',
+    type: 'Health',
+  };
+
+  const ref = collection(db, 'resources');
+  const docRef = await addDoc(ref, resourceData);
+
+  return { id: docRef.id, ...resourceData };
+};
+
+
+export const addTestActivity = async () => {
+  const activityData = {
+    date: '2025-04-28',
+    image: 'https://example.com/activity.jpg',
+    location: 'City Park',
+    name: 'Tree Planting',
+    points: '50',
+  };
+
+  const ref = collection(db, 'activities');
+  const docRef = await addDoc(ref, activityData);
+
+  return { id: docRef.id, ...activityData };
+};
+
+export const addTestCompletedActivity = async () => {
+  const completedActivityData = {
+    date: '2025-04-25',
+    location: 'Community Center',
+    name: 'Food Drive Volunteer',
+    points: '30',
+    status: 'completed',
+  };
+
+  const ref = collection(db, 'activities'); // Same collection, just flagged as completed
+  const docRef = await addDoc(ref, completedActivityData);
+
+  return { id: docRef.id, ...completedActivityData };
+};
+export const addTestReward = async () => {
+  const rewardData = {
+    category: 'Gift Card',
+    description: 'Amazon $10 Gift Card',
+    image: 'https://example.com/reward.jpg',
+    name: 'Amazon GC',
+    pointsCost: '100',
+  };
+
+  const ref = collection(db, 'rewards');
+  const docRef = await addDoc(ref, rewardData);
+
+  return { id: docRef.id, ...rewardData };
+};
+export const addTestRedemptionHistory = async () => {
+  const redemptionData = {
+    date: '2025-04-20',
+    pointsCost: '100',
+    rewardName: 'Amazon GC',
+    status: 'redeemed',
+  };
+
+  const ref = collection(db, 'redemptions');
+  const docRef = await addDoc(ref, redemptionData);
+
+  return { id: docRef.id, ...redemptionData };
+};
+export const addTestRegisterActivity = async () => {
+  const activityData = {
+    date: '2025-04-30',
+    image: 'https://example.com/event.jpg',
+    location: 'Library Hall',
+    name: 'Book Reading Session',
+    points: '20',
+    registered: true,
+  };
+
+  const ref = collection(db, 'activities');
+  const docRef = await addDoc(ref, activityData);
+
+  return { id: docRef.id, ...activityData };
+};
+

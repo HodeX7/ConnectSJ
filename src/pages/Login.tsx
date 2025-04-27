@@ -67,22 +67,74 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
  export default Login;
 
+//TEST
+// Un comment it to Test
+
 // import { useEffect } from 'react';
-// import { addTestJob, getJobs } from '../services/api';
+// import {
+//   addTestJob,
+//   addTestResource,
+//   addTestActivity,
+//   addTestCompletedActivity,
+//   addTestRegisterActivity,
+//   addTestReward,
+//   addTestRedemptionHistory,
+//   getJobs,
+//   getResources,
+//   getActivities,
+//   getCompletedActivities,
+//   getRewards,
+//   getRedemptionHistory,
+// } from '../services/api';
 
 // export default function FirestoreTest() {
 //   useEffect(() => {
 //     const run = async () => {
-//       const added = await addTestJob();
-//       console.log('✅ Job Added:', added);
+//       const job = await addTestJob();
+//       console.log('✅ Test Job Added:', job);
 
+//       const resource = await addTestResource();
+//       console.log('✅ Test Resource Added:', resource);
+
+//       const activity = await addTestActivity();
+//       console.log('✅ Test Activity Added:', activity);
+
+//       const completedActivity = await addTestCompletedActivity();
+//       console.log('✅ Test Completed Activity Added:', completedActivity);
+
+//       const registeredActivity = await addTestRegisterActivity();
+//       console.log('✅ Test Registered Activity Added:', registeredActivity);
+
+//       const reward = await addTestReward();
+//       console.log('✅ Test Reward Added:', reward);
+
+//       const redemption = await addTestRedemptionHistory();
+//       console.log('✅ Test Redemption History Added:', redemption);
+
+//       // Fetching data back to confirm
 //       const jobs = await getJobs();
 //       console.log('📦 All Jobs:', jobs);
+
+//       const resources = await getResources();
+//       console.log('📦 All Resources:', resources);
+
+//       const activities = await getActivities();
+//       console.log('📦 All Activities:', activities);
+
+//       const completed = await getCompletedActivities();
+//       console.log('📦 Completed Activities:', completed);
+
+//       const rewards = await getRewards();
+//       console.log('📦 All Rewards:', rewards);
+
+//       const redemptions = await getRedemptionHistory();
+//       console.log('📦 Redemption History:', redemptions);
 //     };
 
 //     run();
 //   }, []);
 
-//   return <div>Check your console for test job!</div>;
+//   return <div>🚀 Check your browser console for Firestore test output!</div>;
 // }
+
 

@@ -26,8 +26,8 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
   const navigate = useNavigate();
 
   // Get username from localStorage for welcome message
-  const userString = localStorage.getItem("user");
-  const user = userString ? JSON.parse(userString) : { calstateId: "" };
+  const user = localStorage.getItem("user");
+  // const user = userString ? JSON.parse(userString) : { calstateId: "" };
 
   const resourceCategories = [
     {
@@ -96,9 +96,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
       <div className="bg-primary-600 text-white p-6 pt-16 rounded-b-3xl">
         <motion.div variants={itemVariants} className="mb-6">
           <h1 className="text-2xl font-bold">{t("dashboard.welcome")}</h1>
-          <p className="text-primary-100 text-lg font-medium">
-            {user.calstateId}
-          </p>
+          <p className="text-primary-100 text-lg font-medium">{user}</p>
         </motion.div>
 
         <motion.div
@@ -130,7 +128,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
               className="cursor-pointer"
               onClick={() => {
                 navigator.clipboard.writeText(
-                  `https://connect-sj.vercel.app/ref/${user.calstateid}`
+                  `https://connect-sj.vercel.app/ref/${user}`
                 );
               }}
             />

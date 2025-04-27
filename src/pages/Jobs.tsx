@@ -1,41 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
-import { Briefcase, MapPin, Building, Clock, DollarSign } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
+import { Briefcase, MapPin, Building, Clock, DollarSign } from "lucide-react";
 
-import Button from '../components/Button';
-import Card from '../components/Card';
-import NavBar from '../components/NavBar';
+import Button from "../components/Button";
+import Card from "../components/Card";
+import NavBar from "../components/NavBar";
 
 // Import mock data
-import { mockJobs } from '../data/mockData';
-import { getJobs } from '../services/api';
+import { mockJobs } from "../data/mockData";
+import { getJobs } from "../services/api";
+
+type Job = {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  type: string;
+  salary: string;
+  description: string;
+  requirements: string;
+};
 
 const Jobs: React.FC = () => {
   const { t } = useTranslation();
-  const [filter, setFilter] = useState('all');
-  const [jobs, setJobs] = useState(mockJobs);
+  const [filter, setFilter] = useState("all");
+  const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Uncomment the following when API is ready
-    /*
     const fetchJobs = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const data = await getJobs({ filter });
-        setJobs(data);
+        const jobs = await getJobs(); // type: { id: string }[]
+        console.log(jobs);
+        setJobs(jobs);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to fetch jobs');
+        setError(err instanceof Error ? err.message : "Failed to fetch jobs");
       } finally {
         setIsLoading(false);
       }
     };
 
     fetchJobs();
-    */
   }, [filter]);
 
   // Animation variants
@@ -45,9 +55,9 @@ const Jobs: React.FC = () => {
       opacity: 1,
       transition: {
         when: "beforeChildren",
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
@@ -58,15 +68,15 @@ const Jobs: React.FC = () => {
       transition: {
         type: "spring",
         stiffness: 300,
-        damping: 24
-      }
-    }
+        damping: 24,
+      },
+    },
   };
 
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-neutral-600">{t('common.loading')}</p>
+        <p className="text-neutral-600">{t("common.loading")}</p>
       </div>
     );
   }
@@ -77,7 +87,7 @@ const Jobs: React.FC = () => {
         <div className="text-center">
           <p className="text-error-600 mb-4">{error}</p>
           <Button onClick={() => window.location.reload()}>
-            {t('common.retry')}
+            {t("common.retry")}
           </Button>
         </div>
       </div>
@@ -97,44 +107,49 @@ const Jobs: React.FC = () => {
             <Briefcase size={24} />
           </div>
           <div>
-            <h1 className="text-2xl font-bold">{t('jobs.title')}</h1>
-            <p className="text-primary-100">{t('jobs.available')}</p>
+            <h1 className="text-2xl font-bold">{t("jobs.title")}</h1>
+            <p className="text-primary-100">{t("jobs.available")}</p>
           </div>
         </motion.div>
       </div>
 
       <div className="px-6 py-4">
-        <motion.div variants={itemVariants} className="flex gap-2 mb-6 overflow-x-auto">
+        <motion.div
+          variants={itemVariants}
+          className="flex gap-2 mb-6 overflow-x-auto"
+        >
           <Button
-            variant={filter === 'all' ? 'primary' : 'outline'}
+            variant={filter === "all" ? "primary" : "outline"}
             size="sm"
-            onClick={() => setFilter('all')}
+            onClick={() => setFilter("all")}
           >
             All Jobs
           </Button>
           <Button
-            variant={filter === 'fulltime' ? 'primary' : 'outline'}
+            variant={filter === "fulltime" ? "primary" : "outline"}
             size="sm"
-            onClick={() => setFilter('fulltime')}
+            onClick={() => setFilter("fulltime")}
           >
             Full Time
           </Button>
           <Button
-            variant={filter === 'parttime' ? 'primary' : 'outline'}
+            variant={filter === "parttime" ? "primary" : "outline"}
             size="sm"
-            onClick={() => setFilter('parttime')}
+            onClick={() => setFilter("parttime")}
           >
             Part Time
           </Button>
         </motion.div>
 
         <div className="space-y-4">
-          {jobs.map(job => (
+          {jobs.map((job) => (
             <motion.div key={job.id} variants={itemVariants}>
               <Card className="p-4">
                 <div className="flex justify-between items-start mb-4">
                   <div>
-                    <h3 className="text-lg font-semibold text-neutral-800">{job.title}</h3>
+                    <h3 className="text-lg font-semibold text-neutral-800">
+                      {job.title}
+                    </h3>
                     <div className="flex items-center text-neutral-600 text-sm mt-1">
                       <Building size={16} className="mr-1" />
                       <span>{job.company}</span>
@@ -164,17 +179,11 @@ const Jobs: React.FC = () => {
 
                 <div className="border-t border-neutral-200 pt-4 mt-4">
                   <h4 className="font-medium mb-2">Requirements:</h4>
-                  <ul className="list-disc list-inside text-sm text-neutral-600">
-                    {job.requirements.map((req, index) => (
-                      <li key={index}>{req}</li>
-                    ))}
-                  </ul>
+                  <p>{job.requirements}</p>
                 </div>
 
                 <div className="mt-4 flex justify-end">
-                  <Button variant="primary">
-                    Apply Now
-                  </Button>
+                  <Button variant="primary">Apply Now</Button>
                 </div>
               </Card>
             </motion.div>

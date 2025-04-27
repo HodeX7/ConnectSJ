@@ -6,7 +6,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const token = process.env.VITE_CHATBOT_API_KEY; // <-- Add this to Vercel Env Vars later
+  const token = process.env.VITE_CHATBOT_API_KEY;
 
   try {
     const forwardRes = await fetch(

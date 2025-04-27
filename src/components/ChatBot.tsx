@@ -56,8 +56,6 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
         input_type: "chat",
       };
 
-      const isProduction = import.meta.env.MODE === "production";
-
       const apiUrl = isProduction
         ? "/api/chat"
         : "/chatapi/lf/c40fcb81-ad16-49ea-a621-5666e1bdafda/api/v1/run/24852f36-f1cc-40cf-8e3f-b879f3cfe0d2?stream=false";
@@ -70,7 +68,6 @@ const Chatbot: React.FC<ChatbotProps> = ({ token }) => {
         },
         body: JSON.stringify(payload),
       });
-
       const data = await response.json();
 
       // ✅ Correct parsing: dig into data.outputs[0].outputs[0].results.message.data.text

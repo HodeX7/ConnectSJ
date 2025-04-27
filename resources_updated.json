@@ -1,0 +1,152 @@
+[
+  {
+    "id": "res-8858",
+    "name": "Night Shelter San Jose",
+    "type": "Healthcare",
+    "address": "366 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 225-2261",
+    "hours": "Sat-Sun 9am-5pm",
+    "distance": "0.7 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Homeless_shelter_beds.jpg"
+  },
+  {
+    "id": "res-5062",
+    "name": "Healthy Start Clinic",
+    "type": "Healthcare",
+    "address": "997 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 756-2655",
+    "hours": "24/7",
+    "distance": "1.7 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Food_bank_volunteers.jpg"
+  },
+  {
+    "id": "res-7652",
+    "name": "Rainbow Shelter",
+    "type": "Food",
+    "address": "526 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 924-8543",
+    "hours": "24/7",
+    "distance": "2.5 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Food_bank_volunteers.jpg"
+  },
+  {
+    "id": "res-1317",
+    "name": "Unity Homeless Shelter",
+    "type": "Shelter",
+    "address": "400 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 880-4486",
+    "hours": "Mon-Fri 8am-8pm",
+    "distance": "2.9 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Community_health_clinic.jpg"
+  },
+  {
+    "id": "res-3552",
+    "name": "Rainbow Shelter",
+    "type": "Transportation",
+    "address": "552 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 392-5636",
+    "hours": "24/7",
+    "distance": "4.0 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Homeless_shelter_beds.jpg"
+  },
+  {
+    "id": "res-4846",
+    "name": "Rainbow Shelter",
+    "type": "Shelter",
+    "address": "768 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 814-1831",
+    "hours": "Mon-Fri 8am-8pm",
+    "distance": "3.2 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/19/Parking_Lot_Safe_Parking_Program.jpg"
+  },
+  {
+    "id": "res-6004",
+    "name": "Mobile Healthcare Bus",
+    "type": "Shelter",
+    "address": "983 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 951-1557",
+    "hours": "Sat-Sun 9am-5pm",
+    "distance": "2.4 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Homeless_shelter_beds.jpg"
+  },
+  {
+    "id": "res-6660",
+    "name": "Open Arms Clinic",
+    "type": "Shelter",
+    "address": "241 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 396-4275",
+    "hours": "Sat-Sun 9am-5pm",
+    "distance": "1.4 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/19/Parking_Lot_Safe_Parking_Program.jpg"
+  },
+  {
+    "id": "res-7664",
+    "name": "Healthy Start Clinic",
+    "type": "Healthcare",
+    "address": "462 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 289-5328",
+    "hours": "Mon-Fri 8am-8pm",
+    "distance": "0.6 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Food_bank_volunteers.jpg"
+  },
+  {
+    "id": "res-4203",
+    "name": "Mobile Healthcare Bus",
+    "type": "Healthcare",
+    "address": "725 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 352-7773",
+    "hours": "24/7",
+    "distance": "1.8 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Food_bank_volunteers.jpg"
+  },
+  {
+    "id": "res-4913",
+    "name": "City Parking Relief Program",
+    "type": "Transportation",
+    "address": "508 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 546-4840",
+    "hours": "24/7",
+    "distance": "4.3 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/19/Parking_Lot_Safe_Parking_Program.jpg"
+  },
+  {
+    "id": "res-8426",
+    "name": "Unity Homeless Shelter",
+    "type": "Healthcare",
+    "address": "126 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 105-3122",
+    "hours": "24/7",
+    "distance": "0.8 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/19/Parking_Lot_Safe_Parking_Program.jpg"
+  },
+  {
+    "id": "res-6727",
+    "name": "Rapid Food Relief",
+    "type": "Healthcare",
+    "address": "479 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 994-7435",
+    "hours": "24/7",
+    "distance": "4.3 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Homeless_shelter_beds.jpg"
+  },
+  {
+    "id": "res-7929",
+    "name": "Mobile Healthcare Bus",
+    "type": "Shelter",
+    "address": "733 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 982-4073",
+    "hours": "Mon-Fri 8am-8pm",
+    "distance": "1.0 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Community_health_clinic.jpg"
+  },
+  {
+    "id": "res-8804",
+    "name": "Open Arms Clinic",
+    "type": "Healthcare",
+    "address": "570 Civic Center Dr, San Jose, CA",
+    "phone": "(408) 642-7022",
+    "hours": "Sat-Sun 9am-5pm",
+    "distance": "3.9 miles",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/9f/Community_health_clinic.jpg"
+  }
+]

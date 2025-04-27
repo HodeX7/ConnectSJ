@@ -17,14 +17,14 @@ import Button from "../components/Button";
 import Card from "../components/Card";
 import Input from "../components/Input";
 import NavBar from "../components/NavBar";
-import { getResources } from "../services/api"; // Import the API function
-import { mockResources } from "../data/mockData"; // Import mock data
+import { getResources } from "../services/api";
+import { mockResources } from "../data/mockData";
 
 const Resources: React.FC = () => {
   const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
-  const [resources, setResources] = useState(mockResources); // Initialize with mock data
+  const [resources, setResources] = useState(mockResources);
 
   const filters = [
     { id: "all", name: t("resources.nearby"), icon: <MapPin size={18} /> },
@@ -51,19 +51,17 @@ const Resources: React.FC = () => {
   );
 
   useEffect(() => {
-    // Uncomment the following when API is ready
-    /*
     const fetchResources = async () => {
       try {
-        const data = await getResources(); // Fetch resources from API
-        setResources(data); // Update state with fetched data
+        const data = await getResources();
+        console.log(data);
+        setResources(data);
       } catch (err) {
-        console.error(err); // Handle error
+        console.error(err);
       }
     };
 
     fetchResources();
-    */
   }, []);
 
   // Animation variants
